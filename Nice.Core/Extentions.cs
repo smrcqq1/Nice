@@ -1,4 +1,5 @@
-﻿using Nice;
+﻿using Newtonsoft.Json;
+using Nice;
 using Nice.DTO;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,20 @@ public static class Extentions
             ID = o.ID,
             Name = o.Name
         }).ToList();
+    }
+    public static string ToJson<T>(this T data) where T : class, new()
+    {
+        return JsonConvert.SerializeObject(data);
+    }
+
+    public static T FromJson<T>(this string json) where T : class, new()
+    {
+        return JsonConvert.DeserializeObject<T>(json);
+    }
+
+    public static object FromJson(this string json, Type type)
+    {
+        var res = JsonConvert.DeserializeObject(json, type);
+        return res;
     }
 }

@@ -23,11 +23,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Components", "Components", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nice.ReadWriteSeparation", "Compents\Nice.ReadWriteSeparation\Nice.ReadWriteSeparation.csproj", "{EFD4931C-EE5A-48C0-BB23-8232E49F0DB2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ORMTest", "UnitTests\ORMTest\ORMTest.csproj", "{B4457561-EECF-4ED6-A34A-A55647C7FDEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ORMTest", "UnitTests\ORMTest\ORMTest.csproj", "{B4457561-EECF-4ED6-A34A-A55647C7FDEF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Servers", "Servers", "{E7D1B2A8-6334-4766-AEB1-B953D9D99834}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nice.Servers.Staticize", "Servers\Nice.Servers.Staticize\Nice.Servers.Staticize.csproj", "{CC30560D-9E0A-4B32-9C0C-49563D05C3C1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nice.Servers.Staticize", "Servers\Nice.Servers.Staticize\Nice.Servers.Staticize.csproj", "{CC30560D-9E0A-4B32-9C0C-49563D05C3C1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcService", "Test\GrpcService\GrpcService.csproj", "{2D82F5BE-54C5-4BE6-94CE-16CB11F52F5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPCTest", "UnitTests\RPCTest\RPCTest.csproj", "{EC5CDFDF-1891-4F0D-86DA-8E943120A907}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +75,14 @@ Global
 		{CC30560D-9E0A-4B32-9C0C-49563D05C3C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC30560D-9E0A-4B32-9C0C-49563D05C3C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC30560D-9E0A-4B32-9C0C-49563D05C3C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D82F5BE-54C5-4BE6-94CE-16CB11F52F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D82F5BE-54C5-4BE6-94CE-16CB11F52F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D82F5BE-54C5-4BE6-94CE-16CB11F52F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D82F5BE-54C5-4BE6-94CE-16CB11F52F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC5CDFDF-1891-4F0D-86DA-8E943120A907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC5CDFDF-1891-4F0D-86DA-8E943120A907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC5CDFDF-1891-4F0D-86DA-8E943120A907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC5CDFDF-1891-4F0D-86DA-8E943120A907}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -82,6 +94,8 @@ Global
 		{EFD4931C-EE5A-48C0-BB23-8232E49F0DB2} = {D9945406-16C9-438C-A089-034969C87966}
 		{B4457561-EECF-4ED6-A34A-A55647C7FDEF} = {94C54068-4A44-4653-A998-0DC4D4B17CA4}
 		{CC30560D-9E0A-4B32-9C0C-49563D05C3C1} = {E7D1B2A8-6334-4766-AEB1-B953D9D99834}
+		{2D82F5BE-54C5-4BE6-94CE-16CB11F52F5F} = {EAC90A22-726B-45E4-A08D-E962C0515DB5}
+		{EC5CDFDF-1891-4F0D-86DA-8E943120A907} = {94C54068-4A44-4653-A998-0DC4D4B17CA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5905FC78-8072-4EEC-8B75-712D4B2271AF}

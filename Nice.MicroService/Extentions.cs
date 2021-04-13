@@ -1,5 +1,10 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Castle.DynamicProxy;
+using Microsoft.Extensions.DependencyInjection;
 using Nice.ORM;
+using Nice.RPC;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Nice
 {
@@ -14,13 +19,24 @@ namespace Nice
         {
             return services;
         }
+        private static readonly ProxyGenerator _proxyGenerator = new ProxyGenerator();
         /// <summary>
         /// 使用自定义的RPC方案
         /// </summary>
         /// <returns></returns>
-        public static IServiceCollection UseRPC<T>(this IServiceCollection Services) where T : class, IRPC
+        /// <remarks>
+        /// 将其它微服务的Service注入进来,然后可以像本地Service一样使用
+        /// </remarks>
+        public static IServiceCollection UseRPC<TRPC>(this IServiceCollection Services, Assembly assembly) where TRPC : IRPC, IInterceptor
         {
-            Services.AddSingleton<IRPC, T>();
+            var list = assembly.GetTypes().Where(o=>o.IsInterface && o.IsPublic);
+            var rpc = Activator.CreateInstance<TRPC>();
+            //var httpRequestInterceptor = new HttpRequestInterceptor(rpc);
+            foreach (var item in list)
+            {
+                var res = _proxyGenerator.CreateInterfaceProxyWithoutTarget(item, rpc);
+                Services.AddSingleton(item, res);
+            }
             return Services;
         }
         /// <summary>

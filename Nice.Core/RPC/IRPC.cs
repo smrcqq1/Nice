@@ -10,6 +10,7 @@ namespace Nice
     /// </summary>
     public interface IRPC
     {
-        Task<TResult> Post<TResult>();
+        Task<string> Get(string url,Dictionary<string,string> headers = null);
+        Task<string> Post(string url,object data, Dictionary<string, string> headers = null);
     }
 }
