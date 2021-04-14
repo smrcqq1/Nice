@@ -27,10 +27,10 @@ namespace Nice
         /// <remarks>
         /// 将其它微服务的Service注入进来,然后可以像本地Service一样使用
         /// </remarks>
-        public static IServiceCollection UseRPC<TRPC>(this IServiceCollection Services, Assembly assembly) where TRPC : IRPC, IInterceptor
+        public static IServiceCollection UseRPC<T>(this IServiceCollection Services,IRPC rpc)
         {
+            var assembly = typeof(T).Assembly;
             var list = assembly.GetTypes().Where(o=>o.IsInterface && o.IsPublic);
-            var rpc = Activator.CreateInstance<TRPC>();
             //var httpRequestInterceptor = new HttpRequestInterceptor(rpc);
             foreach (var item in list)
             {

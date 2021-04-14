@@ -7,30 +7,46 @@ using System.Threading.Tasks;
 
 namespace Nice.RPC
 {
-    public class HttpRPC : IRPC,IInterceptor
+    public class HttpRPC : IRPC
     {
+        string BaseUrl
+        {
+            get
+            {
+                return "";
+            }
+        }
         public void Intercept(IInvocation invocation)
         {
-            var str = Get("").Result;
-            var res = str.FromJson(invocation.Method.ReturnType);
-            invocation.ReturnValue = Task.FromResult(res);
-        }
-        public Task<string> Get(string url, Dictionary<string, string> headers = null)
-        {
-            return Task.FromResult(Newtonsoft.Json.JsonConvert.SerializeObject(new DTO.NamedItem() { ID = 1,Name = "学生1"}));
+            var arguments = invocation.Arguments;
+            var index = 0;
+            var sb = new StringBuilder(BaseUrl);
+            foreach(var p in invocation.Method.GetParameters())
+            {
+                var value = invocation.GetArgumentValue(index);
+                sb.Append(p.Name);
+                sb.Append("=");
+                sb.Append(value);
+                sb.Append("&");
+                index++;
+            }
+            var res = Get(sb.ToString()).Result;
+            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject(res, invocation.Method.ReturnType.GenericTypeArguments[0]);
+            invocation.ReturnValue = Task.FromResult(obj);
         }
 
-        public Task<TResult> Get<TResult>(string url, Dictionary<string, string> headers = null)
+        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null)
         {
-            throw new NotImplementedException();
+            var str = await Get(url,headers);
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(str);
+        }
+
+        public  Task<string> Get(string url, Dictionary<string, string> headers = null)
+        {
+            return Task.FromResult(Newtonsoft.Json.JsonConvert.SerializeObject(new DTO.NamedItem() { ID = 1,Name = url }));
         }
 
         public Task<string> Post(string url, object data, Dictionary<string, string> headers = null)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<TResult> Post<TResult>(string url, object data, Dictionary<string, string> headers = null)
         {
             throw new NotImplementedException();
         }

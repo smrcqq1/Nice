@@ -15,8 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Compents\Nice.UnitTest\Nice.UnitTest.csproj" />
     <ProjectReference Include="..\..\Nice.Core\Nice.Core.csproj" />
-    <ProjectReference Include="..\..\Nice.Implementation\Nice.Implementation.csproj" />
+    <ProjectReference Include="..\..\Nice.Implementation\Nice.Api.csproj" />
     <ProjectReference Include="..\..\Test\Test.Database\Test.Database.csproj" />
   </ItemGroup>
 

@@ -17,7 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Nice.Core\Nice.Core.csproj" />
-    <ProjectReference Include="..\Nice.Implementation\Nice.Implementation.csproj" />
+    <ProjectReference Include="..\Nice.Implementation\Nice.Api.csproj" />
   </ItemGroup>
 
 </Project>

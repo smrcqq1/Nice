@@ -119,14 +119,15 @@ namespace Nice.ORM.EFCore
                 await action(this);
                 tran.Commit();
             }
-            catch (TransactionException transEx)
+            catch (TransactionException)
             {
                 tran.Rollback();
-                throw transEx;
+                //throw transEx;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                throw ex;
+                tran.Rollback();
+                //throw ex;
             }
             finally
             {

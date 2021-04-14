@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nice;
@@ -11,20 +12,22 @@ namespace RPCTest
     {
         protected override IServiceCollection Config(IServiceCollection services)
         {
-            //将其它微服务的Service注入进来,像本地Service一样使用
-            return services.UseRPC<HttpRPC>(typeof(UnitTest1).Assembly);
+            //将其它微服务的Service注入进来,然后像本地Service一样使用
+            return services.UseRPC<ITestInterface>(new HttpRPC());
         }
         [TestMethod]
         public void TestMethod1()
         {
+            //注意 ITestInterface 是一个远程接口,并且在本地没有实现,但可以像本地Service一样使用
             var t = GetService<ITestInterface>();
             var p = "1111111";
-            var result = t.Test(p).Result;
-            Assert.AreEqual(result,p);
+            var result = t.Get(p,1).Result;
+            Assert.AreEqual(result.Name,p);
         }
     }
     public interface ITestInterface
     {
-        Task<Nice.DTO.NamedItem> Test(string pppp);
+        Task<Nice.DTO.NamedItem> Get(string pppp,int id);
+        Task<bool> Edit(Nice.DTO.NamedItem request);
     }
 }
