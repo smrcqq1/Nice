@@ -4,8 +4,4 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Users\admin\Documents\WeChat Files\wxid_nngtjanajchf52\FileStorage\File\2021-04\Acb.Framework\Acb.Framework\src\Acb.MicroService.Client\Acb.MicroService.Client.csproj" />
-  </ItemGroup>
-
 </Project>
