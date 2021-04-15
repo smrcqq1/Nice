@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Nice.Core\Nice.Core.csproj" />
     <ProjectReference Include="..\Nice.Implementation\Nice.Api.csproj" />
+    <ProjectReference Include="..\Utils\Nice.EmitHelper\Nice.EmitHelper.csproj" />
   </ItemGroup>
 
 </Project>

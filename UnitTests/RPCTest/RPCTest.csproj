@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\..\Users\admin\Documents\WeChat Files\wxid_nngtjanajchf52\FileStorage\File\2021-04\Acb.Framework\Acb.Framework\src\Acb.MicroService.Client\Acb.MicroService.Client.csproj" />
     <ProjectReference Include="..\..\Compents\Nice.UnitTest\Nice.UnitTest.csproj" />
     <ProjectReference Include="..\..\Nice.MicroService\Nice.MicroService.csproj" />
   </ItemGroup>

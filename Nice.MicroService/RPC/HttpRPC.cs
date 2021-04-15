@@ -9,7 +9,7 @@ namespace Nice.RPC
 {
     public class HttpRPC : IRPC
     {
-        string BaseUrl
+        public string BaseURL
         {
             get
             {
@@ -20,7 +20,7 @@ namespace Nice.RPC
         {
             var arguments = invocation.Arguments;
             var index = 0;
-            var sb = new StringBuilder(BaseUrl);
+            var sb = new StringBuilder(BaseURL);
             foreach(var p in invocation.Method.GetParameters())
             {
                 var value = invocation.GetArgumentValue(index);
@@ -46,7 +46,7 @@ namespace Nice.RPC
             return Task.FromResult(Newtonsoft.Json.JsonConvert.SerializeObject(new DTO.NamedItem() { ID = 1,Name = url }));
         }
 
-        public Task<string> Post(string url, object data, Dictionary<string, string> headers = null)
+        public Task<T> Post<T>(string url, object data, Dictionary<string, string> headers = null)
         {
             throw new NotImplementedException();
         }

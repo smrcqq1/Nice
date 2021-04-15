@@ -23,19 +23,43 @@ namespace Nice
         /// <summary>
         /// 使用自定义的RPC方案
         /// </summary>
+        /// <param name="Services"></param>
+        /// <param name="rpc"></param>
         /// <returns></returns>
         /// <remarks>
         /// 将其它微服务的Service注入进来,然后可以像本地Service一样使用
         /// </remarks>
         public static IServiceCollection UseRPC<T>(this IServiceCollection Services,IRPC rpc)
         {
-            var assembly = typeof(T).Assembly;
-            var list = assembly.GetTypes().Where(o=>o.IsInterface && o.IsPublic);
+            return Services.UseRPC(typeof(T), rpc);
+        }
+        static IServiceCollection UseRPC(this IServiceCollection Services, Type type, IRPC rpc)
+        {
+            //var res = _proxyGenerator.CreateInterfaceProxyWithoutTarget(type, rpc);
+            Services.AddSingleton(type, type.Proxy());
+            return Services;
+        }
+        /// <summary>
+        /// 使用自定义的RPC方案
+        /// </summary>
+        /// <param name="Services"></param>
+        /// <param name="assembly">Assembly下所有接口都会自动被添加</param>
+        /// <param name="rpc"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// 将其它微服务的Service注入进来,然后可以像本地Service一样使用
+        /// </remarks>
+        public static IServiceCollection UseRPC(this IServiceCollection Services, Assembly assembly,IRPC rpc)
+        {
+            //var builder = assembly.Proxy();
+            var list = assembly.GetTypes().Where(o => o.IsInterface && o.IsPublic);
             //var httpRequestInterceptor = new HttpRequestInterceptor(rpc);
             foreach (var item in list)
             {
-                var res = _proxyGenerator.CreateInterfaceProxyWithoutTarget(item, rpc);
-                Services.AddSingleton(item, res);
+                //var proxy = builder.DefineType(item);
+                //var proxy = item.Proxy();
+                //Services.AddSingleton(item, proxy);
+                //Services.UseRPC(item, rpc);
             }
             return Services;
         }
