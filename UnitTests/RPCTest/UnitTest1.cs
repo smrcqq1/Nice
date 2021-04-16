@@ -20,9 +20,9 @@ namespace RPCTest
         {
             //注意 ITestInterface 是一个远程接口,并且在本地没有实现,但可以像本地Service一样使用
             var t = GetService<ITestInterface>();
-            var p = "1111111";
-            var result = t.Get(1).Result;
-            Assert.AreEqual(result.Name,p);
+            //var p = "1111111";
+            //var result = t.Get(1).Result;
+            //Assert.AreEqual(result.Name,p);
         }
     }
     public interface ITestInterface
