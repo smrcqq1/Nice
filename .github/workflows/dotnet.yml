@@ -23,3 +23,15 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+      
+    - name: Docker Build & Push to Docker Hub
+      uses: opspresso/action-docker@master
+      with:
+        args: --docker
+      env:
+        USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        DOCKERFILE: "Dockerfile"
+        IMAGE_NAME: "li2008kui/cicd-test"
+        TAG_NAME: "v0.0.1"
+        LATEST: "true"
