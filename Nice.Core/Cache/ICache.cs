@@ -20,11 +20,17 @@ namespace Nice
         /// <returns></returns>
         Task<bool> Set<T>(string key,T data,int expireTime = -1);
         /// <summary>
-        /// 获取指定key的缓存数据
+        /// 获取指定key的缓存数据,并转换为指定类型
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
         Task<T> Get<T>(string key);
+        /// <summary>
+        /// 获取指定key的缓存数据
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        string Get(string key);
     }
 }

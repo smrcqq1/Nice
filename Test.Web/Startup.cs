@@ -2,11 +2,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Nice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 #endregion using
 namespace Test.Web
@@ -17,8 +21,15 @@ namespace Test.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.UseNice()
-                .UseStaticize();
+            //services.AddControllers(o => {
+            //    o.Filters.Add<CacheFilter>();
+            //});
+            services.AddControllers(o => {
+                //o.Filters.Add<CacheFilter>();
+            });
+            //services.AddSingleton<ICache,TestCache>();
+            //services.UseNice()
+            //    .UseStaticize();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,14 +41,62 @@ namespace Test.Web
             }
 
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllers();
             });
+        }
+    }
+    public class TestCache
+    {
+        public IActionResult Get(string key)
+        {
+            if (!Caches.ContainsKey(key))
+            {
+                return null;
+            }
+            return Caches[key];
+        }
+        public bool Set(string key, IActionResult data, int expireTime = -1)
+        {
+            if (Caches.ContainsKey(key))
+            {
+                Caches[key] = data;
+            }
+            else
+            {
+                Caches.Add(key,data);
+            }
+            return true;
+        }
+        static readonly Dictionary<string, IActionResult> Caches = new Dictionary<string, IActionResult>();
+    }
+    public class Cache : Attribute,IActionFilter
+    {
+        TestCache cache = new TestCache();
+        public void OnActionExecuted(ActionExecutedContext context)
+        {
+            cache.Set(GetKey(context.HttpContext),context.Result);
+        }
+        string GetKey(HttpContext httpContext)
+        {
+            var key = $"{httpContext.Request.Path}?{httpContext.Request.QueryString}";
+            return key;
+        }
+
+        public void OnActionExecuting(ActionExecutingContext context)
+        {
+            if(context.HttpContext.Request.Method != "GET")
+            {
+                return;
+            }
+            var res = cache.Get(GetKey(context.HttpContext));
+            if (res != null)
+            {
+                var tmp = res as ObjectResult;
+                tmp.Value = "ÎÒÀ´×Ô»º´æ:" + tmp.Value;
+                context.Result = res;
+            }
         }
     }
 }
