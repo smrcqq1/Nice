@@ -32,6 +32,6 @@ jobs:
         USERNAME: ${{ secrets.DOCKER_USERNAME }}
         PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
         DOCKERFILE: "Dockerfile"
-        IMAGE_NAME: "li2008kui/cicd-test"
+        IMAGE_NAME: "github_cicd"
         TAG_NAME: "v0.0.1"
         LATEST: "true"
