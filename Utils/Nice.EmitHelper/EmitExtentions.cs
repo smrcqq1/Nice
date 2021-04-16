@@ -1,11 +1,17 @@
-﻿using System;
+﻿#region using
+using System;
 using System.Linq;
 using System.Reflection;
 using System.Reflection.Emit;
+#endregion using
 namespace Nice
 {
+    /// <summary>
+    /// 对EMIT的一般封装和扩展
+    /// </summary>
     public static class EmitExtentions
     {
+        #region 获取一个指定类型的代理类
         /// <summary>
         /// 获取一个指定类型的代理类
         /// </summary>
@@ -17,7 +23,9 @@ namespace Nice
             //Acb.MicroService.Client.Proxy.AsyncDispatchProxyGenerator.CreateProxyType(type);
             return proxy;
         }
+        #endregion 获取一个指定类型的代理类
 
+        #region 获取一个Assembly的代理Assembly
         /// <summary>
         /// 获取一个Assembly的代理Assembly
         /// </summary>
@@ -26,9 +34,11 @@ namespace Nice
         {
             var name = assembly.GetName().Name;
             //System.Reflection.AssemblyName 是用来表示一个Assembly的完整名称的
-            var assyName = new AssemblyName();
-            //为要创建的Assembly定义一个名称（这里忽略版本号，Culture等信息）
-            assyName.Name = "MyAssyFor_" + name;
+            var assyName = new AssemblyName
+            {
+                //为要创建的Assembly定义一个名称（这里忽略版本号，Culture等信息）
+                Name = "MyAssyFor_" + name
+            };
             //获取AssemblyBuilder
             //AssemblyBuilderAccess有Run，Save，RunAndSave三个取值
             var assyBuilder =
@@ -40,7 +50,15 @@ namespace Nice
             //真正创建，并返回
             return modBuilder;
         }
+        #endregion 获取一个Assembly的代理Assembly
 
+        #region 生成指定类型的代理
+        /// <summary>
+        /// 生成指定类型的代理类型
+        /// </summary>
+        /// <param name="modBuilder"></param>
+        /// <param name="targetType"></param>
+        /// <returns></returns>
         public static Type DefineType(this ModuleBuilder modBuilder,Type targetType)
         {
             //新类型的名称：随便定一个
@@ -59,6 +77,9 @@ namespace Nice
             }
             return typeBuilder.CreateType();
         }
+        #endregion 生成指定类型的代理
+
+        #region 生成指定方法的代理
         public static void DefineMethod(this TypeBuilder typeBuilder,MethodInfo targetMethod)
         {
             //得到方法的各个参数的类型
@@ -70,12 +91,13 @@ namespace Nice
 
             //得到IL生成器
             var ilGen = methodBuilder.GetILGenerator();
-
+#warning IL生成方法尚未实现
             //以下三行相当于：{Console.Writeln("I'm "+ targetMethod.Name +"ing");}
             ilGen.Emit(OpCodes.Ldarga_S, 1);
             ilGen.Emit(OpCodes.Call, typeof(int).GetMethod("ToString"));
 
             ilGen.Emit(OpCodes.Ret);
         }
+        #endregion 生成指定方法的代理
     }
 }

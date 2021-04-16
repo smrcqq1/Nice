@@ -19,7 +19,6 @@ namespace Nice
         {
             return services;
         }
-        private static readonly ProxyGenerator _proxyGenerator = new ProxyGenerator();
         /// <summary>
         /// 使用自定义的RPC方案
         /// </summary>
@@ -51,15 +50,12 @@ namespace Nice
         /// </remarks>
         public static IServiceCollection UseRPC(this IServiceCollection Services, Assembly assembly,IRPC rpc)
         {
-            //var builder = assembly.Proxy();
+            var builder = assembly.Proxy();
             var list = assembly.GetTypes().Where(o => o.IsInterface && o.IsPublic);
-            //var httpRequestInterceptor = new HttpRequestInterceptor(rpc);
             foreach (var item in list)
             {
-                //var proxy = builder.DefineType(item);
-                //var proxy = item.Proxy();
-                //Services.AddSingleton(item, proxy);
-                //Services.UseRPC(item, rpc);
+                var proxy = builder.DefineType(item);
+                Services.AddSingleton(item, proxy);
             }
             return Services;
         }

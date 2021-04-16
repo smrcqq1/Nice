@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Nice.RPC
 {
+    /// <summary>
+    /// 基于HTTP的RPC实现
+    /// </summary>
     public class HttpRPC : IRPC
     {
         public string BaseURL
@@ -18,21 +21,21 @@ namespace Nice.RPC
         }
         public void Intercept(IInvocation invocation)
         {
-            var arguments = invocation.Arguments;
             var index = 0;
             var sb = new StringBuilder(BaseURL);
             foreach(var p in invocation.Method.GetParameters())
             {
                 var value = invocation.GetArgumentValue(index);
                 sb.Append(p.Name);
-                sb.Append("=");
+                sb.Append('=');
                 sb.Append(value);
-                sb.Append("&");
+                sb.Append('&');
                 index++;
             }
             var res = Get(sb.ToString()).Result;
             var obj = Newtonsoft.Json.JsonConvert.DeserializeObject(res, invocation.Method.ReturnType.GenericTypeArguments[0]);
             invocation.ReturnValue = Task.FromResult(obj);
+            #warning 这样实现行不通
         }
 
         public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null)

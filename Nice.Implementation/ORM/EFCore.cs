@@ -18,7 +18,7 @@ namespace Nice.ORM.EFCore
         public IReadWriteQueryable<TSource> Set<TSource>() where TSource : class,IEntitybase
         {
             var source = _dbContext.Set<TSource>().AsQueryable();
-            source = GetSource<TSource>(source);
+            source = GetSource(source);
             var res = new ReadWriteQueryable<TSource>(_dbContext, source);
             return res;
         }
@@ -26,10 +26,20 @@ namespace Nice.ORM.EFCore
         public IReadOnlyQueryable<TSource> ReadOnlySet<TSource>() where TSource : class, IEntitybase
         {
             var source = _dbContext.Set<TSource>().AsNoTracking();
-            source = GetSource<TSource>(source);
+            source = GetSource(source);
             return new ReadOnlyQueryable<TSource>(_dbContext, source);
         }
-
+        /// <summary>
+        /// 根据TSource类型获取不同的查询
+        /// </summary>
+        /// <typeparam name="TSource"></typeparam>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        /// <remarks>
+        /// 期望(尽量不装箱,不反射的前提下实现):
+        /// 1.封装逻辑删除
+        /// 2.封装多租户
+        /// </remarks>
         static IQueryable<TSource> GetSource<TSource>(IQueryable<TSource> source) where TSource : class, IEntitybase
         {
             //if (typeof(ISoftDeletable).IsAssignableFrom(typeof(TSource)))
