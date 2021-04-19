@@ -18,6 +18,8 @@ namespace RPCTest
         [TestMethod]
         public void TestMethod1()
         {
+            var example = new Nice.Example();
+            example.Test().GetAwaiter().GetResult();
             //注意 ITestInterface 是一个远程接口,并且在本地没有实现,但可以像本地Service一样使用
             //var t = GetService<ITestInterface>();
             //var p = "1111111";

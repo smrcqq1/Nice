@@ -4,14 +4,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Nice;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Test.Database;
 #endregion using
 namespace Test.Web
 {
@@ -21,15 +19,21 @@ namespace Test.Web
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            //services.AddControllers(o => {
-            //    o.Filters.Add<CacheFilter>();
-            //});
-            services.AddControllers(o => {
-                //o.Filters.Add<CacheFilter>();
-            });
+            services.AddControllers();
+            services.AddScoped<Contracts.IStudentService,Services.StudentService>();
             //services.AddSingleton<ICache,TestCache>();
             //services.UseNice()
             //    .UseStaticize();
+            services
+                .UseEFCore<TestDbContext>(o =>
+                {
+                    o.UseMySql("data source=localhost;database=testorm; uid=root;pwd=q111111;");
+                })
+                //.UseEFCore<TestDbContext2>(o =>
+                //{
+                //    o.UseMySql("data source=localhost;database=testorm2; uid=root;pwd=q111111;");
+                //})
+                ;
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -93,8 +97,8 @@ namespace Test.Web
             var res = cache.Get(GetKey(context.HttpContext));
             if (res != null)
             {
-                var tmp = res as ObjectResult;
-                tmp.Value = "我来自缓存:" + tmp.Value;
+                //var tmp = res as ObjectResult;
+                //tmp.Value = "我来自缓存:" + Newtonsoft.Json.JsonConvert.SerializeObject( tmp.Value);
                 context.Result = res;
             }
         }

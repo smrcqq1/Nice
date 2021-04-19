@@ -11,9 +11,9 @@ namespace ORMTest
     [TestClass]
     public class ReadWriteTest : TestBase
     {
-        public Nice.ORM.IReadWriteQueryable<Teacher> Teachers => Orm.Set<Teacher>();
+        public Nice.ORM.IReadWriteQueryable<Teacher> Teachers => Orm.SetForWrite<Teacher>();
 
-        public Nice.ORM.IReadWriteQueryable<Student> Students => Orm.Set<Student>();
+        public Nice.ORM.IReadWriteQueryable<Student> Students => Orm.SetForWrite<Student>();
 
         [TestMethod]
         public void Add_DeleteAsync()

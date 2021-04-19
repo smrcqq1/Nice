@@ -9,7 +9,12 @@ namespace Test.Database.Entities
     /// <summary>
     /// 数据模型的扩展性样例,演示框架的所有功能,所以没有基础封装
     /// </summary>
-    public class Student : IEntitybase,ITenated, INamedItem, IOperationRecord,ISoftDeletable, ITreeable<Student>
+    public class Student : IEntitybase
+        ,ITenated
+        //, INamedItem
+        , IOperationRecord
+        ,ISoftDeletable
+        //, ITreeable<Student>
     {
         #region (IEntitybase)主键
         public int ID { get; set; }
@@ -32,9 +37,9 @@ namespace Test.Database.Entities
         #endregion (ISoftDeletable)逻辑删除标记
 
         #region [ITreeable]无限层级树形结构
-        public virtual List<Student> Children { get; set; }
-        public int ParentID { get; set; }
-        public virtual Student Parent { get; set; }
+        //public virtual List<Student> Children { get; set; }
+        //public int ParentID { get; set; }
+        //public virtual Student Parent { get; set; }
         #endregion [ITreeable]无限层级树形结构
 
         #region 关系

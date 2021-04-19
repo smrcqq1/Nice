@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Compents\Nice.UnitTest\Nice.UnitTest.csproj" />
     <ProjectReference Include="..\..\Nice.MicroService\Nice.MicroService.csproj" />
+    <ProjectReference Include="..\..\Utils\Nice.EmitHelper\Nice.EmitHelper.csproj" />
   </ItemGroup>
 
 </Project>

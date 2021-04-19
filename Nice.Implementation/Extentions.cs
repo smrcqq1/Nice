@@ -41,56 +41,56 @@ namespace System
         /// 1.如果只使用一种缓存请使用此方法注入,后注入的会覆盖前面的;业务代码统一注入ICache即可
         /// 2.如果同时使用几种缓存方案,需要调用别的方法注入,例如调用UseCache()使用默认的Redis缓存,再调用UseStaticize()使用默认的静态化缓存.这样,业务代码中要使用redis,则注入ICache,要使用静态化则注入IStaticize,即可同时使用多种缓存
         /// </remarks>
-        public static IServiceCollection UseCache<T>(this IServiceCollection Services) where T : class, ICache
+        public static IServiceCollection UseCache<T>(this IServiceCollection services) where T : class, ICache
         {
-            Services.AddSingleton<ICache, T>();
-            return Services;
+            services.AddSingleton<ICache, T>();
+            return services;
         }
         /// <summary>
         /// 使用redis缓存方案
         /// </summary>
-        /// <param name="Services"></param>
+        /// <param name="services"></param>
         /// <returns></returns>
-        public static IServiceCollection UseCache(this IServiceCollection Services)
+        public static IServiceCollection UseRedis(this IServiceCollection services)
         {
-            Services.AddSingleton<ICache, Redis>();
-            return Services;
+            services.AddSingleton<ICache, Redis>();
+            return services;
         }
         /// <summary>
         /// 使用自定义的ORM框架
         /// </summary>
         /// <returns></returns>
-        public static IServiceCollection UseORM<T, TDbContext>(this IServiceCollection Services) where T : class, IORM where TDbContext : DbContext
+        public static IServiceCollection UseORM<T, TDbContext>(this IServiceCollection services) where T : class, IORM where TDbContext : DbContext
         {
-            Services.AddScoped<IORM, T>();
-            return Services;
+            services.AddScoped<IORM, T>();
+            return services;
         }
         /// <summary>
         /// 使用EFCore
         /// </summary>
         /// <returns></returns>
-        public static IServiceCollection UseEFCore<TDbContext>(this IServiceCollection Services,Action<DbContextOptionsBuilder> optionsAction) where TDbContext : DbContext
+        public static IServiceCollection UseEFCore<TDbContext>(this IServiceCollection services,Action<DbContextOptionsBuilder> optionsAction) where TDbContext : DbContext
         {
-            Services.AddDbContextPool<TDbContext>(optionsAction);
-            return Services.UseORM<EFCore<TDbContext>, TDbContext>();
+            services.AddDbContextPool<TDbContext>(optionsAction);
+            return services.UseORM<EFCore<TDbContext>, TDbContext>();
         }
         /// <summary>
         /// 使用自定义的日志方案
         /// </summary>
         /// <returns></returns>
-        public static IServiceCollection UseLogger<T>(this IServiceCollection Services) where T : class, ILogger
+        public static IServiceCollection UseLogger<T>(this IServiceCollection services) where T : class, ILogger
         {
-            Services.AddSingleton<ILogger, T>();
-            return Services;
+            services.AddSingleton<ILogger, T>();
+            return services;
         }
         /// <summary>
         /// 使用多租户的用户信息
         /// </summary>
         /// <returns></returns>
-        public static IServiceCollection UseTenated<T>(this IServiceCollection Services) where T : class, ITenantProvider
+        public static IServiceCollection UseTenated<T>(this IServiceCollection services) where T : class, ITenantProvider
         {
-            Services.AddScoped<ITenantProvider, T>();
-            return Services;
+            services.AddScoped<ITenantProvider, T>();
+            return services;
         }
         /// <summary>
         /// 使用读写分离

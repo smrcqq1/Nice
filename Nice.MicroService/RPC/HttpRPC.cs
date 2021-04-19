@@ -23,6 +23,7 @@ namespace Nice.RPC
         {
             var index = 0;
             var sb = new StringBuilder(BaseURL);
+            sb.Append("?");
             foreach(var p in invocation.Method.GetParameters())
             {
                 var value = invocation.GetArgumentValue(index);

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Nice.Entities;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Nice.ORM.EFCore
@@ -9,13 +10,14 @@ namespace Nice.ORM.EFCore
     /// </summary>
     public class EFCore<TDbContext> : IORM where TDbContext :DbContext
     {
+        private readonly List<DbContext> DbContexts = new List<DbContext>();
         private readonly TDbContext _dbContext;
         public EFCore(TDbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public IReadWriteQueryable<TSource> Set<TSource>() where TSource : class,IEntitybase
+        public IReadWriteQueryable<TSource> SetForWrite<TSource>() where TSource : class,IEntitybase
         {
             var source = _dbContext.Set<TSource>().AsQueryable();
             source = GetSource(source);
@@ -23,7 +25,7 @@ namespace Nice.ORM.EFCore
             return res;
         }
 
-        public IReadOnlyQueryable<TSource> ReadOnlySet<TSource>() where TSource : class, IEntitybase
+        public IReadOnlyQueryable<TSource> Set<TSource>(bool canWrite = false) where TSource : class, IEntitybase
         {
             var source = _dbContext.Set<TSource>().AsNoTracking();
             source = GetSource(source);
