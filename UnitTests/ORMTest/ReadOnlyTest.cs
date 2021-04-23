@@ -7,9 +7,9 @@ namespace ORMTest
     [TestClass]
     public class ReadOnlyTest : TestBase
     {
-        public Nice.ORM.IReadOnlyQueryable<Teacher> Teachers => Orm.Set<Teacher>();
+        public Nice.ORM.IReadOnlyQueryable<Teacher> Teachers => Orm.ReadOnlySet<Teacher>();
 
-        public Nice.ORM.IReadOnlyQueryable<Student> Students => Orm.Set<Student>();
+        public Nice.ORM.IReadOnlyQueryable<Student> Students => Orm.ReadOnlySet<Student>();
 
         [TestMethod]
         public void CountAsync()

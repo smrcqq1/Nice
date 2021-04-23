@@ -17,7 +17,7 @@ namespace Nice.ORM.EFCore
             _dbContext = dbContext;
         }
 
-        public IReadWriteQueryable<TSource> SetForWrite<TSource>() where TSource : class,IEntitybase
+        public IReadWriteQueryable<TSource> Set<TSource>() where TSource : class,IEntitybase
         {
             var source = _dbContext.Set<TSource>().AsQueryable();
             source = GetSource(source);
@@ -25,7 +25,7 @@ namespace Nice.ORM.EFCore
             return res;
         }
 
-        public IReadOnlyQueryable<TSource> Set<TSource>(bool canWrite = false) where TSource : class, IEntitybase
+        public IReadOnlyQueryable<TSource> ReadOnlySet<TSource>(bool canWrite = false) where TSource : class, IEntitybase
         {
             var source = _dbContext.Set<TSource>().AsNoTracking();
             source = GetSource(source);

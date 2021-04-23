@@ -18,12 +18,12 @@ namespace Nice.Redis
     /// </remarks>
     public class RedisCore : IORM
     {
-        public IReadOnlyQueryable<TSource> Set<TSource>(bool canWrite) where TSource : class, IEntitybase
+        public IReadOnlyQueryable<TSource> ReadOnlySet<TSource>(bool canWrite) where TSource : class, IEntitybase
         {
             throw new NotImplementedException();
         }
 
-        public IReadWriteQueryable<TSource> SetForWrite<TSource>() where TSource : class, IEntitybase
+        public IReadWriteQueryable<TSource> Set<TSource>() where TSource : class, IEntitybase
         {
             throw new NotImplementedException();
         }

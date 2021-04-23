@@ -21,7 +21,7 @@ namespace Nice
         /// </summary>
         /// <typeparam name="TSource"></typeparam>
         /// <returns></returns>
-        IReadWriteQueryable<TSource> SetForWrite<TSource>() where TSource : class, IEntitybase;
+        IReadWriteQueryable<TSource> Set<TSource>() where TSource : class, IEntitybase;
 
         /// <summary>
         /// 获取一个数据集的[只读]辅助类
@@ -34,6 +34,6 @@ namespace Nice
         /// 封装目的:
         /// 1.从代码层面做读写分离=>成本最低
         /// </remarks>
-        IReadOnlyQueryable<TSource> Set<TSource>(bool canWrite = false) where TSource : class, IEntitybase;
+        IReadOnlyQueryable<TSource> ReadOnlySet<TSource>(bool canWrite = false) where TSource : class, IEntitybase;
     }
 }

@@ -8,9 +8,9 @@ namespace Test.Web
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentController: ControllerBase,Test.Contracts.IStudentService
+    public class StudentController: ControllerBase,IStudentService
     {
-        private readonly Test.Contracts.IStudentService StudentService;
+        private readonly IStudentService StudentService;
         public StudentController(Test.Contracts.IStudentService studentService)
         {
             StudentService = studentService;
