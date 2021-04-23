@@ -6,6 +6,7 @@ using Nice.Cache;
 using Nice.Logger;
 using Nice.ORM;
 using Nice.ORM.EFCore;
+using Nice.Redis;
 #endregion using
 
 namespace System
@@ -73,6 +74,16 @@ namespace System
         {
             services.AddDbContextPool<TDbContext>(optionsAction);
             return services.UseORM<EFCore<TDbContext>, TDbContext>();
+        }
+        /// <summary>
+        /// 使用RedisCore
+        /// </summary>
+        /// <param name="services"></param>
+        /// <returns></returns>
+        public static IServiceCollection 使用RedisCore(this IServiceCollection services)
+        {
+            services.AddScoped<IORM, RedisCore>();
+            return services;
         }
         /// <summary>
         /// 使用自定义的日志方案

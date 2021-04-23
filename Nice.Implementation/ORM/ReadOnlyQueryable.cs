@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Nice.ORM
 {
     /// <summary>
-    /// 默认的读写分离方案
+    /// EFCore的只读方案
     /// </summary>
     public class ReadOnlyQueryable<TSource> : IReadOnlyQueryable<TSource> where TSource : class, IEntitybase
     {
