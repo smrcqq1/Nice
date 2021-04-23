@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Nice.Core\Nice.Core.csproj" />
+    <ProjectReference Include="..\..\Nice.Implementation\Nice.Api.csproj" />
+    <ProjectReference Include="..\..\Nice.MicroService\Nice.MicroService.csproj" />
+  </ItemGroup>
+
+</Project>

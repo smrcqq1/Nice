@@ -3,6 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Nice;
 using Nice.RPC;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RPCTest
@@ -18,17 +19,16 @@ namespace RPCTest
         [TestMethod]
         public void TestMethod1()
         {
-            var example = new Nice.Example();
-            example.Test().GetAwaiter().GetResult();
+            //var example = new Nice.Example();
+            //example.Test().GetAwaiter().GetResult();
             //注意 ITestInterface 是一个远程接口,并且在本地没有实现,但可以像本地Service一样使用
-            //var t = GetService<ITestInterface>();
-            //var p = "1111111";
-            //var result = t.Get(1).Result;
-            //Assert.AreEqual(result.Name,p);
+            var t = GetService<ITestInterface>();
+            var result = t.Get().Result;
         }
     }
     public interface ITestInterface
     {
+        Task<List<Nice.DTO.NamedItem>> Get();
         Task<Nice.DTO.NamedItem> Get(int id);
         Task<bool> Edit(Nice.DTO.NamedItem request);
     }

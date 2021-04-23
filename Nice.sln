@@ -47,6 +47,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Test.MangoDB", "Test\Test.M
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoDBTest", "UnitTests\MongoDBTest\MongoDBTest.csproj", "{3B6CA46A-3B27-4E61-B26D-665CBC92792F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.MicroService", "Test\Test.MicroService\Test.MicroService.csproj", "{E03FA846-EE12-42CD-9AD3-C7C515E00A39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -121,6 +123,10 @@ Global
 		{3B6CA46A-3B27-4E61-B26D-665CBC92792F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B6CA46A-3B27-4E61-B26D-665CBC92792F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B6CA46A-3B27-4E61-B26D-665CBC92792F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E03FA846-EE12-42CD-9AD3-C7C515E00A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E03FA846-EE12-42CD-9AD3-C7C515E00A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E03FA846-EE12-42CD-9AD3-C7C515E00A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E03FA846-EE12-42CD-9AD3-C7C515E00A39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -140,6 +146,7 @@ Global
 		{5B9FDB3A-A783-43F9-8BDF-EC66ECD2AE44} = {EAC90A22-726B-45E4-A08D-E962C0515DB5}
 		{3C74D460-FC6E-4406-A854-5E887EB245E9} = {EAC90A22-726B-45E4-A08D-E962C0515DB5}
 		{3B6CA46A-3B27-4E61-B26D-665CBC92792F} = {94C54068-4A44-4653-A998-0DC4D4B17CA4}
+		{E03FA846-EE12-42CD-9AD3-C7C515E00A39} = {EAC90A22-726B-45E4-A08D-E962C0515DB5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5905FC78-8072-4EEC-8B75-712D4B2271AF}

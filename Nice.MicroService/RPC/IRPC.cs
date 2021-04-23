@@ -9,10 +9,21 @@ namespace Nice
     /// <summary>
     /// 远程调用统一封装
     /// </summary>
-    public interface IRPC: IInterceptor
+    public interface IRPC: IAsyncInterceptor, IInterceptor
     {
         string BaseURL { get; }
-        Task<T> Get<T>(string url,Dictionary<string,string> headers = null);
-        Task<T> Post<T>(string url,object data, Dictionary<string, string> headers = null);
+
+        /// <summary>
+        /// 调用远程接口并获取反序列化的结果
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="invocation"></param>
+        Task<T> Send<T>(IInvocation invocation);
+        /// <summary>
+        /// 调用远程接口并且木有返回值(从HttpCode判断是否成功)
+        /// </summary>
+        /// <param name="invocation"></param>
+        /// <returns></returns>
+        Task Send(IInvocation invocation);
     }
 }

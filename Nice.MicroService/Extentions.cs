@@ -32,10 +32,11 @@ namespace Nice
         {
             return Services.UseRPC(typeof(T), rpc);
         }
+        private static readonly ProxyGenerator _proxyGenerator = new ProxyGenerator();
         static IServiceCollection UseRPC(this IServiceCollection Services, Type type, IRPC rpc)
         {
-            //var res = _proxyGenerator.CreateInterfaceProxyWithoutTarget(type, rpc);
-            Services.AddSingleton(type, type.Proxy());
+            var res = _proxyGenerator.CreateInterfaceProxyWithoutTarget(type, rpc);
+            Services.AddSingleton(type, res);
             return Services;
         }
         /// <summary>

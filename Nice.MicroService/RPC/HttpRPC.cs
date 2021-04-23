@@ -10,21 +10,17 @@ namespace Nice.RPC
     /// <summary>
     /// 基于HTTP的RPC实现
     /// </summary>
-    public class HttpRPC : IRPC
+    public class HttpRPC : RPCBase
     {
-        public string BaseURL
+        public override string BaseURL => "";
+
+        public override Task<TResult> Send<TResult>(IInvocation invocation)
         {
-            get
-            {
-                return "";
-            }
-        }
-        public void Intercept(IInvocation invocation)
-        {
+            #region 如果是get请求,组装url和参数
             var index = 0;
             var sb = new StringBuilder(BaseURL);
-            sb.Append("?");
-            foreach(var p in invocation.Method.GetParameters())
+            sb.Append('?');
+            foreach (var p in invocation.Method.GetParameters())
             {
                 var value = invocation.GetArgumentValue(index);
                 sb.Append(p.Name);
@@ -33,26 +29,23 @@ namespace Nice.RPC
                 sb.Append('&');
                 index++;
             }
-            var res = Get(sb.ToString()).Result;
-            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject(res, invocation.Method.ReturnType.GenericTypeArguments[0]);
-            invocation.ReturnValue = Task.FromResult(obj);
-            #warning 这样实现行不通
+            #endregion 如果是get请求,组装url和参数
+            var url = sb.ToString();
+
+            #region 如果是POST请求,组装body
+            #endregion 如果是POST请求,组装body
+
+            #region 调用远程真正的方法,获取回复
+            var res = "[{\"ID\":\"111\",\"Name\":\"测试\"}]";
+            #endregion 调用远程真正的方法,获取回复
+
+            var obj = Newtonsoft.Json.JsonConvert.DeserializeObject<TResult>(res);
+            return Task.FromResult(obj);
         }
 
-        public async Task<T> Get<T>(string url, Dictionary<string, string> headers = null)
+        public override Task Send(IInvocation invocation)
         {
-            var str = await Get(url,headers);
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<T>(str);
-        }
-
-        public  Task<string> Get(string url, Dictionary<string, string> headers = null)
-        {
-            return Task.FromResult(Newtonsoft.Json.JsonConvert.SerializeObject(new DTO.NamedItem() { ID = 1,Name = url }));
-        }
-
-        public Task<T> Post<T>(string url, object data, Dictionary<string, string> headers = null)
-        {
-            throw new NotImplementedException();
+            return Task.CompletedTask;
         }
     }
 }
