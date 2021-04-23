@@ -32,7 +32,7 @@ namespace Test.Web
 
         [HttpGet]
         [Route("Get")]
-        [Cache]
+        //[Cache]
         public Task<InfoRequest> Get(int id)
         {
             return StudentService.Get(id);
@@ -40,6 +40,7 @@ namespace Test.Web
 
         [HttpGet]
         [Route("List")]
+        [ResponseCache(Duration = 1200,Location = ResponseCacheLocation.Any)]
         //[Cache]
         public Task<List<NamedItem>> List()
         {

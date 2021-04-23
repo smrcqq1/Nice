@@ -34,6 +34,7 @@ namespace Test.Web
                 //    o.UseMySql("data source=localhost;database=testorm2; uid=root;pwd=q111111;");
                 //})
                 ;
+            services.AddResponseCaching();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,7 +44,7 @@ namespace Test.Web
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseResponseCaching();
             app.UseRouting();
             app.UseEndpoints(endpoints =>
             {

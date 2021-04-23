@@ -1,4 +1,5 @@
-﻿using Nice;
+﻿using MongoDB.Bson;
+using Nice;
 using Nice.Entities;
 using Nice.ORM;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ namespace Test.Database.Entities
     /// </remarks>
     public class Teacher : TenatedEntity, INamedItem, IModifyRecord, ISoftDeletable
     {
+        public ObjectId _id { get; set; }
         #region (IModifyRecord)详细的操作记录,除了记录增删改的时间,还会记录修改操作的字段,旧值和新值
         public virtual List<DetailOperationRecord> OperationRecords { get; set; }
         #endregion (IModifyRecord)详细的操作记录,除了记录增删改的时间,还会记录修改操作的字段,旧值和新值

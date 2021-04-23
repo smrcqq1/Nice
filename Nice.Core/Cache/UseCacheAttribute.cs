@@ -1,8 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿#region using
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
-
+#endregion using
 namespace Nice.Cache
 {
     /// <summary>
@@ -66,7 +67,7 @@ namespace Nice.Cache
         public void OnActionExecuting(ActionExecutingContext context)
         {
             //只有get请求能被缓存
-            if (context.HttpContext.Request.Method != "GET")
+            if (context.HttpContext.Request.Method != "GET") 
             {
                 return;
             }
