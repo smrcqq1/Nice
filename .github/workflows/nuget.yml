@@ -30,4 +30,4 @@ jobs:
       with:
         PROJECT_FILE_PATH: Nice/Nice.Core/Nice.Core.csproj
         PACKAGE_NAME: Nice.Core
-        NUGET_KEY: oy2c4yabswc7xr5u7mwaxq5gwnfcwqxepcrpnsmwtygis4
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
