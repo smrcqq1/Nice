@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>Preview</LangVersion>
+    <Company>st.mark</Company>
+    <Description>Nice.Simple项目的架构层的数据模型层</Description>
+    <Authors>st.mark</Authors>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Database\Nice.Database\Nice.Database.csproj" />
+    <ProjectReference Include="..\Nice.Simple.Contracts\Nice.Simple.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

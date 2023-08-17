@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>PreView</LangVersion>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>C:\Users\居丹\Desktop\Nice</PackageOutputPath>
+    <Version>1.0.3</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="Moq" Version="4.16.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Database\Nice.EFCore\Nice.EFCore.csproj" />
+    <ProjectReference Include="..\..\Services\Nice.Services\Nice.Services.csproj" />
+  </ItemGroup>
+
+</Project>

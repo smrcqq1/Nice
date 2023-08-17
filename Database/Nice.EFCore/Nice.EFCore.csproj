@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <Description>EFcore封装</Description>
+    <PackageProjectUrl>https://haest.visualstudio.com/Nice</PackageProjectUrl>
+    <RepositoryUrl>https://haest.visualstudio.com/Nice/_git/Nice.EFCore</RepositoryUrl>
+    <PackageTags>EFCore,ORM</PackageTags>
+    <PackageReleaseNotes>初始</PackageReleaseNotes>
+    <Authors>st.mark</Authors>
+    <Company>Nice</Company>
+    <LangVersion>preview</LangVersion>
+    <Version>1.0.5</Version>
+    <PackageOutputPath>C:\Users\居丹\Desktop\Nice</PackageOutputPath>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.9" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Utils\Nice.DataProvider\Nice.DataProvider.csproj" />
+    <ProjectReference Include="..\Nice.Database\Nice.Database.csproj" />
+  </ItemGroup>
+
+</Project>

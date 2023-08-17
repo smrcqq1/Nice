@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+	  <LangVersion>Preview</LangVersion>
+	  <Description>业务逻辑层引用此库</Description>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <PackageOutputPath>C:\Users\居丹\Desktop\Nice</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\Nice.Contracts\Nice.Contracts.csproj" />
+    <ProjectReference Include="..\..\Database\Nice.Database\Nice.Database.csproj" />
+    <ProjectReference Include="..\..\Utils\Nice.DataProvider\Nice.DataProvider.csproj" />
+  </ItemGroup>
+
+</Project>

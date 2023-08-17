@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>Preview</LangVersion>
+    <Authors>st.mark</Authors>
+    <Description>WebAPI基础类库，提供如Controller层自动代理等功能</Description>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath>C:\Users\居丹\Desktop\Nice</PackageOutputPath>
+    <Version>1.0.1</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Formatters.Json" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\Nice.Contracts\Nice.Contracts.csproj" />
+    <ProjectReference Include="..\..\Database\Nice.Database\Nice.Database.csproj" />
+    <ProjectReference Include="..\..\Services\Nice.Services\Nice.Services.csproj" />
+    <ProjectReference Include="..\..\Utils\Nice.Emit\Nice.Emit.csproj" />
+    <ProjectReference Include="..\Nice.Framework\Nice.Framework.csproj" />
+  </ItemGroup>
+
+</Project>

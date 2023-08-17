@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+	  <LangVersion>Preview</LangVersion>
+	  <Description>数据库模型层引用此库</Description>
+	  <PackageOutputPath>C:\Users\居丹\Desktop\Nice</PackageOutputPath>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Contracts\Nice.Contracts\Nice.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

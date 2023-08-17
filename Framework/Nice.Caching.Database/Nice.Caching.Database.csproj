@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+	  <LangVersion>Preview</LangVersion>
+	  <Description>数据库数据缓存封装</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Database\Nice.Database\Nice.Database.csproj" />
+    <ProjectReference Include="..\Nice.Caching\Nice.Caching.csproj" />
+  </ItemGroup>
+
+</Project>

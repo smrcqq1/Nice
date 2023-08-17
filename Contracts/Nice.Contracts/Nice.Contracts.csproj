@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Nullable>enable</Nullable>
+	  <LangVersion>Preview</LangVersion>
+	  <Description>契约层引用此库</Description>
+	  <AssemblyName>Nice.Contracts</AssemblyName>
+	  <RootNamespace>Nice.Contracts</RootNamespace>
+	  <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+	  <Authors>st.mark</Authors>
+	  <Company>st.mark</Company>
+	  <PackAsTool>False</PackAsTool>
+	  <PackageOutputPath>C:\Users\居丹\Desktop\Nice</PackageOutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Validaters\**" />
+    <EmbeddedResource Remove="Validaters\**" />
+    <None Remove="Validaters\**" />
+  </ItemGroup>
+
+</Project>
